@@ -17,6 +17,9 @@ npm install --save @eeue56/adeilad
 Imagine you have some API that gives you JSON, for example:
 
 ```javascript
+import { decode, pipeline, required, string, number, array } from "@eeue56/adeilad";
+
+
 // fetched via a http request
 const someExampleData = {
     name: "Noah",
