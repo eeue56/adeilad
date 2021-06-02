@@ -9,7 +9,7 @@ Part of the [Hiraeth](https://github.com/eeue56/hiraeth) collection.
 ## Installation
 
 ```
-npm install --save @eeue56/coed
+npm install --save @eeue56/adeilad
 ```
 
 ## Example usage
@@ -79,6 +79,8 @@ switch (result.kind) {
 ## Docs
 
 See [docs](./docs/adeilad.md)
+
+You may also want to see the Result type from [coed](https://github.com/eeue56/coed)
 
 ## Name
 
