@@ -1,0 +1,38 @@
+{
+    "name": "@eeue56/adeilad",
+    "version": "0.0.1",
+    "description": "Ensure JSON has the correct structure at runtime",
+    "main": "build/adeilad.js",
+    "typings": "build/adeilad.d.ts",
+    "scripts": {
+        "test": "npx @eeue56/bach",
+        "format": "npx prettier --write .",
+        "build": "tsc -p tsconfig.json",
+        "docs": "npx @eeue56/geiriadur"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eeue56/adeilad.git"
+    },
+    "keywords": [
+        "typescript",
+        "hiraeth",
+        "elm",
+        "decoders"
+    ],
+    "author": "eeue56",
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/eeue56/adeilad/issues"
+    },
+    "homepage": "https://github.com/eeue56/adeilad#readme",
+    "devDependencies": {
+        "@eeue56/bach": "^0.0.2",
+        "@eeue56/geiriadur": "^0.0.3",
+        "prettier": "github:eeue56/prettier#feat/spacing-around-square-brackets",
+        "typescript": "^4.3.2"
+    },
+    "dependencies": {
+        "@eeue56/ts-core": "^1.1.0"
+    }
+}
