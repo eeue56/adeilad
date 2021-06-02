@@ -16,7 +16,7 @@ npm install --save @eeue56/adeilad
 
 Imagine you have some API that gives you JSON, for example:
 
-```javascript
+```typescript
 import { decode, pipeline, required, string, number, array } from "@eeue56/adeilad";
 
 
@@ -35,7 +35,7 @@ type Pet = {
     age: number;
 }
 
-function Pet(name: string, age: number) {
+function Pet(name: string, age: number): Pet {
     return {
         name,
         age
@@ -48,7 +48,7 @@ type Person = {
     pets: Pet[]
 }
 
-function Person(name: string, age: number, pets: Pet[]){
+function Person(name: string, age: number, pets: Pet[]): Person{
     return {
         name,
         age,
@@ -81,7 +81,7 @@ switch (result.kind) {
 
 ## Docs
 
-See [docs](./docs/adeilad.md)
+See [docs](./docs/src/adeilad.md)
 
 You may also want to see the Result type from [coed](https://github.com/eeue56/coed)
 
