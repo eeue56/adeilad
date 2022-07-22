@@ -1,15 +1,15 @@
 import {
-    Decoder,
-    field,
-    at,
-    value,
-    oneOf,
-    fallbackIfNull,
-    decode,
-    succeed,
-    fail,
     andThen,
+    at,
+    decode,
+    Decoder,
+    fail,
+    fallbackIfNull,
+    field,
     map2,
+    oneOf,
+    succeed,
+    value,
 } from "./adeilad";
 
 export function required<a, b>(
@@ -62,10 +62,10 @@ function optionalDecoder<a>(
     function handleResult(input: any) {
         const res = decode(pathDecoder, input);
 
-        if (res.kind === "err") return succeed(fallback);
+        if (res.kind === "Err") return succeed(fallback);
 
         const presentRes = decode(nullOrDecoder, input);
-        if (presentRes.kind === "err") return fail(presentRes.error);
+        if (presentRes.kind === "Err") return fail(presentRes.error);
 
         return succeed(presentRes.value);
     }

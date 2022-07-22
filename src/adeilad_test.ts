@@ -1,4 +1,3 @@
-import { Result } from "@eeue56/ts-core";
 import { Err, Ok } from "@eeue56/ts-core/build/main/lib/result";
 import * as assert from "assert";
 import * as adeilad from "./adeilad";
@@ -27,7 +26,7 @@ export function testAny() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.any(), thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -51,7 +50,7 @@ export function testString() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.string(), thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -61,7 +60,7 @@ export function testString() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.string(), thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -77,7 +76,7 @@ export function testBool() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.bool(), thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -87,7 +86,7 @@ export function testBool() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.bool(), thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -102,12 +101,12 @@ export function testNumber() {
 
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.number(), thing);
-        assert.deepStrictEqual(result.kind, "ok");
+        assert.deepStrictEqual(result.kind, "Ok");
     });
 
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.number(), thing);
-        assert.deepStrictEqual(result.kind, "err");
+        assert.deepStrictEqual(result.kind, "Err");
     });
 }
 
@@ -130,7 +129,7 @@ export function testArray() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.array(adeilad.number()), thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -140,7 +139,7 @@ export function testArray() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.array(adeilad.number()), thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -178,7 +177,7 @@ export function testRecord() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.record(adeilad.string()), thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -196,7 +195,7 @@ export function testRecord() {
             thing
         );
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -206,7 +205,7 @@ export function testRecord() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(adeilad.record(adeilad.string()), thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -265,7 +264,7 @@ export function testField() {
             thing
         );
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -324,7 +323,7 @@ export function testAt() {
             thing
         );
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -373,7 +372,7 @@ export function testOneOf() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(mixedStringAndNumberArrayDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -383,7 +382,7 @@ export function testOneOf() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(mixedStringAndNumberArrayDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -428,7 +427,7 @@ export function testMap() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(personDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -438,7 +437,7 @@ export function testMap() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(personDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -487,7 +486,7 @@ export function testMap2() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(personDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -497,7 +496,7 @@ export function testMap2() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(personDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -553,7 +552,7 @@ export function testMap3() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(personDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -563,7 +562,7 @@ export function testMap3() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(personDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -595,7 +594,7 @@ export function testSucceed() {
     thingsThatShouldPass.forEach((thing) => {
         const result = adeilad.decode(successDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "ok");
+            assert.deepStrictEqual(result.kind, "Ok");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -627,7 +626,7 @@ export function testFail() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(failureDecoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -694,7 +693,7 @@ export function testAndThen() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(decoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -843,7 +842,7 @@ export function testPipeline() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(decoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;
@@ -948,7 +947,7 @@ export function testNestedPipeline() {
     thingsThatShouldNotPass.forEach((thing) => {
         const result = adeilad.decode(decoder, thing);
         try {
-            assert.deepStrictEqual(result.kind, "err");
+            assert.deepStrictEqual(result.kind, "Err");
         } catch (e) {
             console.error(thing, result);
             throw e;

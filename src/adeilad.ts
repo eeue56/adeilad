@@ -1,6 +1,5 @@
 import { Maybe, Result } from "@eeue56/ts-core";
-import { Ok, Err } from "@eeue56/ts-core/build/main/lib/result";
-import { second } from "@eeue56/ts-core/build/main/lib/tuple";
+import { Err, Ok } from "@eeue56/ts-core/build/main/lib/result";
 
 /**
  * A decoder is something which takes JSON and returns a parsed result:
@@ -75,13 +74,13 @@ export function array<a>(innerDecoder: Decoder<a>): Decoder<a[]> {
         for (var i = 0; i < value.length; i++) {
             const item = value[i];
             const res = decode(innerDecoder, item);
-            if (res.kind === "err")
+            if (res.kind === "Err")
                 return Result.mapError(
                     (err) =>
                         `Failed to decode list at index ${i} due to ${err}`,
                     res
                 );
-            if (res.kind === "ok") outArray.push(res.value);
+            if (res.kind === "Ok") outArray.push(res.value);
         }
 
         return Ok(outArray);
@@ -126,7 +125,7 @@ export function oneOf<a>(innerDecoders: Decoder<a>[]): Decoder<a> {
 
             const res = decode(innerDecoder, value);
 
-            if (res.kind === "ok") return Ok(res.value);
+            if (res.kind === "Ok") return Ok(res.value);
 
             errors.push(res.error);
         }
@@ -163,13 +162,13 @@ export function record<a>(
             const key = keys[i];
             const item = value[key];
             const res = decode(innerDecoder, item);
-            if (res.kind === "err")
+            if (res.kind === "Err")
                 return Result.mapError(
                     (err) =>
                         `Failed to decode value at index ${i} due to ${err}`,
                     res
                 );
-            if (res.kind === "ok") outRecord[key] = res.value;
+            if (res.kind === "Ok") outRecord[key] = res.value;
         }
 
         return Ok(outRecord);
@@ -325,12 +324,12 @@ function optionalDecoder<a>(
 
     function handleResult(input: any) {
         const res = decode(pathDecoder, input);
-        if (res.kind === "err" || typeof res.value === "undefined") {
+        if (res.kind === "Err" || typeof res.value === "undefined") {
             return succeed(fallback);
         }
 
         const presentRes = decode(nullOrDecoder, res.value);
-        if (presentRes.kind === "err") return fail(presentRes.error);
+        if (presentRes.kind === "Err") return fail(presentRes.error);
 
         return succeed(presentRes.value);
     }
@@ -400,7 +399,7 @@ export function andThen<a, b>(
     return function (value: any): Result.Result<string, b> {
         const res = decode(innerDecoder, value);
 
-        if (res.kind === "err") return res;
+        if (res.kind === "Err") return res;
 
         return mappedDecoder(res.value)(value);
     };
@@ -419,7 +418,7 @@ export function pipeline<a>(
         for (var i = 0; i < decoders.length; i++) {
             const decoder = decoders[i];
             const res = decode(decoder, value);
-            if (res.kind === "err") return res;
+            if (res.kind === "Err") return res;
 
             resultsToApply.push(res.value);
         }
